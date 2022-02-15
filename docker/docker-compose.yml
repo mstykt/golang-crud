@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  user-postgres:
+    container_name: user-postgres
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=user_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "user_db", "-U", "postgres_user" ]
+      timeout: 5s
+      interval: 2s
+      retries: 3

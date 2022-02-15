@@ -1,0 +1,10 @@
+server:
+  port: 2121
+
+db:
+  platform: postgres
+  name: user_db
+  username: postgres_user
+  password: '123'
+  port: 5432
+  schema: sch_user
